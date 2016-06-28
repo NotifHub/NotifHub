@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "127858088660",
+    "firebase_url": "https://notifhub-36f92.firebaseio.com",
+    "project_id": "notifhub-36f92",
+    "storage_bucket": "notifhub-36f92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127858088660:android:a9eeed08c021d6b1",
+        "android_client_info": {
+          "package_name": "synapsehub.cd.notifhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127858088660-mal17e0o1ou6jmi677sv01rne840rpq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "synapsehub.cd.notifhub",
+            "certificate_hash": "55A560421901E4DA4FE1D667512146D3AFEA4A8F"
+          }
+        },
+        {
+          "client_id": "127858088660-rjqtu5sviaslivfft6dpto706nrjo753.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRE4_V5p4x5V-dOEX-feHKupRHqQdJgSQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127858088660-rjqtu5sviaslivfft6dpto706nrjo753.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
