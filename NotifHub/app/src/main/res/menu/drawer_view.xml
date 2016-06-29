@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/account"
+            android:checked="true"
+            android:title="Mon Compte" />
+        <item
+            android:id="@+id/nav_announce"
+            android:icon="@drawable/depot_announce"
+            android:title="Deposer une annonce" />
+        <item
+            android:id="@+id/nav_all_announces"
+            android:icon="@drawable/all_announces"
+            android:title="Toutes les annonces" />
+
+        <item android:title="Autres" >
+            <menu android:background="@color/colorPrimary2">
+                <group android:checkableBehavior="single"  >
+                    <item
+                        android:id="@+id/nav_mes_annonces"
+                        android:icon="@drawable/mes_announces"
+                        android:title="Mes annonces" />
+                    <item
+                        android:id="@+id/nav_search"
+                        android:icon="@drawable/search"
+                        android:title="Recherches" />
+                    <item
+                        android:id="@+id/nav_about"
+                        android:icon="@drawable/about"
+                        android:title="A Propos de" />
+                </group>
+            </menu>
+
+        </item>
+
+    </group>
+
+
+
+</menu>
