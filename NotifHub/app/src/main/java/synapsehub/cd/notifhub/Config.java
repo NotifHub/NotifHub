@@ -6,7 +6,7 @@ package synapsehub.cd.notifhub;
 
 public class Config {
 
-    public static final String BACKEND_URL = "https://syllasbryant.firebaseIO.com";
+    public static final String PREFS_USERIDentity = "user_identity";
 
 
 }

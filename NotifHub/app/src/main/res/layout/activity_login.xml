@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/myPrimaryDarkColor"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imglogo"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_logo"/>
+
+    <!--<TextView
+        android:layout_above="@+id/imglogo"
+        android:text="NothifHub"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/llBannerBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingTop="30dp"
+        android:background="@drawable/layout_border"
+        android:weightSum="1">
+        <TextView
+            android:gravity="center_horizontal"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginTop="10.0dip"
+            android:layout_marginBottom="30dp"
+            android:text="Identification" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:hint="@string/username"
+                android:layout_weight="0.95"
+                android:layout_margin="5dp"
+                android:inputType="textEmailAddress"
+                style="@style/EditMonText"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:hint="@string/password"
+                android:layout_weight="0.95"
+                android:layout_margin="5dp"
+                android:inputType="textPassword"
+                style="@style/EditMonText"/>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/btn_style"
+            android:text="Se connecter"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30.0dip"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:text="Non inscrit?" />
+
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dip"
+                android:textColor="@color/myPrimaryColor"
+                android:text="S'inscrire."
+                android:onClick="register"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package synapsehub.cd.notifhub;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
@@ -12,14 +13,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import synapsehub.cd.notifhub.fragment.AnnoncesFragment;
 import synapsehub.cd.notifhub.fragment.CompteFragment;
 import synapsehub.cd.notifhub.fragment.HomeFragment;
-
-
+import synapsehub.cd.notifhub.fragment.LoginFragment;
 
 
 public class inActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class inActivity extends AppCompatActivity {
     private Toolbar tbr;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+    private String user_id;
 
     private FirebaseAnalytics mAFirebaseAnalytics;
 
@@ -35,6 +37,10 @@ public class inActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAFirebaseAnalytics=FirebaseAnalytics.getInstance(this);
+
+        user_id=NothifHubApplication.prefs.getString(Config.PREFS_USERIDentity,null);
+
+
         setContentView(R.layout.activity_in);
 
         //Setup de la toolbar
@@ -50,6 +56,13 @@ public class inActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(drawerToggle);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
+
+        /*TextView tvHeader=(TextView)nvDrawer.findViewById(R.id.identity);
+        if(user_id!=null){
+            tvHeader.setText(user_id);
+
+        }*/
+
 
         // Setup drawer view
         setupDrawerContent(nvDrawer);
@@ -120,7 +133,7 @@ public class inActivity extends AppCompatActivity {
             break;
 
             default:
-                fragment=new HomeFragment();
+                fragment=new CompteFragment();
         }
 
 

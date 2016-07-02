@@ -4,5 +4,8 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="retape_pwd">Reecrire le mot de passe</string>
 
 </resources>
