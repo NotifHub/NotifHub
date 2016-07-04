@@ -1,6 +1,6 @@
 package synapsehub.cd.notifhub.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -46,7 +46,6 @@ public class LoginFragment extends Fragment {
         txtUsern=(EditText) rootView.findViewById(R.id.username);
         txtpwd=(EditText) rootView.findViewById(R.id.password);
 
-        txtIdentity=(TextView) rootView.findViewById(R.id.identity);
 
         connectButton=(Button) rootView.findViewById(R.id.btn_signin);
     //implementation du click listener

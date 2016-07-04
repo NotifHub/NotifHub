@@ -22,12 +22,14 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth fireAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
     private EditText txtUsern;
     private EditText txtpwd;
-    private TextView txtIdentity;
     private TextView tv_register;
     Button connectButton;
     private String user_id;
+    private static int REQUEST_REGISTER=99;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,9 @@ public class LoginActivity extends AppCompatActivity {
 
         fireAuth=FirebaseAuth.getInstance();
 
-
         txtUsern=(EditText) findViewById(R.id.username);
         txtpwd=(EditText)findViewById(R.id.password);
 
-        txtIdentity=(TextView)findViewById(R.id.identity);
         tv_register = (TextView)findViewById(R.id.register);
         tv_register.setText(Html.fromHtml("<u>" + tv_register.getText().toString() + "</u>"));
 
@@ -71,8 +71,12 @@ public class LoginActivity extends AppCompatActivity {
 
                             NothifHubApplication.prefs.edit().putString(Config.PREFS_USERIDentity,user.getEmail()).commit();
 
-                            startActivity(new Intent(LoginActivity.this, inActivity.class));
-                            finish();
+                            //startInActivityViewActivity(user.getEmail().toString());
+
+                            Intent in = new Intent(LoginActivity.this, inActivity.class);
+                            in.putExtra("usermail", user.getEmail());
+                            startActivity(in);
+                           // finish();
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -86,11 +90,61 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     public void register(View v){
-        startActivity(new Intent(this, SignUpActivity.class));
+
+        startActivityForResult(new Intent(getApplicationContext(),SignUpActivity.class),REQUEST_REGISTER);
+
+        authStateListener=new FirebaseAuth.AuthStateListener(){
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user=fireAuth.getCurrentUser();
+                if(user!=null){
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
+                }else{
+                    //nothing here
+                }
+            }
+        };
+
+        //startActivity(new Intent(this, SignUpActivity.class));
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //CODE A CHECKER ------------------------------- **********
+        if(authStateListener!=null){
+            fireAuth.addAuthStateListener(authStateListener);
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(authStateListener!=null){
+            fireAuth.removeAuthStateListener(authStateListener);
+        }
+    }
+
+    /*  Start inActivity View activity and pass data *//*
+    private void startInActivityViewActivity(String value) {
+        Intent in = new Intent(LoginActivity.this, inActivity.class);
+        in.putExtra("usermail", value);
+        startActivity(in);
+        finish();
+
+    }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_REGISTER && resultCode==RESULT_OK){
+            txtUsern.setText(data.getStringExtra(Intent.EXTRA_TEXT));
+        }
+    }
 }

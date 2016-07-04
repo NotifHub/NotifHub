@@ -4,6 +4,16 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <string name="home">Acceuil</string>
+    <string name="compte">Mon Compte</string>
+    <string name="annonce">Deposer une annonce</string>
+    <string name="all_annonce">Toutes les annonces</string>
+    <string name="my_annonces">Mes annonces</string>
+    <string name="search">Recherche</string>
+    <string name="about">A Propos de...</string>
+    <string name="settings">Parametres</string>
+    <string name="exit">Deconnection</string>
+
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
     <string name="retape_pwd">Reecrire le mot de passe</string>

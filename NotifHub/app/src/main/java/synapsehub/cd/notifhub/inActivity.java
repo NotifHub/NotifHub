@@ -12,15 +12,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
 
 import synapsehub.cd.notifhub.fragment.AnnoncesFragment;
 import synapsehub.cd.notifhub.fragment.CompteFragment;
 import synapsehub.cd.notifhub.fragment.HomeFragment;
 import synapsehub.cd.notifhub.fragment.LoginFragment;
+
+import static java.security.AccessController.getContext;
 
 
 public class inActivity extends AppCompatActivity {
@@ -30,51 +35,63 @@ public class inActivity extends AppCompatActivity {
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
     private String user_id;
+    TextView headerTxtUsern;
+    TextView headerTxtMail;
 
     private FirebaseAnalytics mAFirebaseAnalytics;
+    private FirebaseAuth fireAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAFirebaseAnalytics=FirebaseAnalytics.getInstance(this);
 
-        user_id=NothifHubApplication.prefs.getString(Config.PREFS_USERIDentity,null);
+        mAFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        fireAuth=FirebaseAuth.getInstance();
+
+        user_id = NothifHubApplication.prefs.getString(Config.PREFS_USERIDentity, null);
 
 
         setContentView(R.layout.activity_in);
 
         //Setup de la toolbar
 
-        tbr=(Toolbar)findViewById(R.id.toolbar);
+        tbr = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(tbr);
 
         //Drawer View setup
-        mDrawer=(DrawerLayout)findViewById(R.id.drawer_layout);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
 
         // DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
 
-        nvDrawer = (NavigationView) findViewById(R.id.nvView);
-
-        /*TextView tvHeader=(TextView)nvDrawer.findViewById(R.id.identity);
-        if(user_id!=null){
-            tvHeader.setText(user_id);
-
-        }*/
-
+        nvDrawer = (NavigationView) findViewById(R.id.slider_menu);
 
         // Setup drawer view
         setupDrawerContent(nvDrawer);
 
+        //Setup the header view
+        setUpHeaderView();
+        headerTxtMail.setText(user_id);
+
+
+
+    }
+
+    //Setup the header view
+    private void setUpHeaderView() {
+
+        View headerView = nvDrawer.inflateHeaderView(R.layout.nvheader);
+        headerTxtUsern = (TextView) headerView.findViewById(R.id.username);
+        headerTxtMail = (TextView) headerView.findViewById(R.id.email_address);
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawer, tbr, R.string.drawer_open,  R.string.drawer_close);
+        return new ActionBarDrawerToggle(this, mDrawer, tbr, R.string.drawer_open, R.string.drawer_close);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -98,6 +115,7 @@ public class inActivity extends AppCompatActivity {
         drawerToggle.syncState();
     }
 
+
     //Setup de la navigation drawer
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -115,25 +133,40 @@ public class inActivity extends AppCompatActivity {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                break;
             case R.id.nav_account:
-                fragment=new CompteFragment();
+                fragment = new CompteFragment();
                 break;
             case R.id.nav_announce:
-                fragment=new AnnoncesFragment();
+                fragment = new AnnoncesFragment();
                 break;
             case R.id.nav_all_announces:
-                fragment=new HomeFragment();
+                fragment = new HomeFragment();
                 break;
             case R.id.nav_mes_annonces:
-                fragment=new HomeFragment();
+                fragment = new HomeFragment();
                 break;
             case R.id.nav_about:
-            fragment=new HomeFragment();
-            break;
-
+                fragment = new HomeFragment();
+                break;
+            case R.id.nav_search:
+                fragment = new CompteFragment();
+                break;
+            case R.id.nav_settings:
+                fragment = new CompteFragment();
+                break;
+            case R.id.nav_exit:
+                fireAuth.signOut();
+                String emptyPrefs="";
+                NothifHubApplication.prefs.edit().putString(Config.PREFS_USERIDentity,emptyPrefs.toString()).commit();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
             default:
-                fragment=new CompteFragment();
+                fragment = new HomeFragment();
         }
 
 
@@ -148,8 +181,8 @@ public class inActivity extends AppCompatActivity {
             setTitle(menuItem.getTitle());
             // Close the navigation drawer
             mDrawer.closeDrawers();
-        } else{
-            Log.e("inActivity","Error in creating the fragment");
+        } else {
+            Log.e("inActivity", "Error in creating the fragment");
         }
     }
 
@@ -160,6 +193,4 @@ public class inActivity extends AppCompatActivity {
         // s'applique lors de n'importe quel changement sur le drawer
         drawerToggle.onConfigurationChanged(newConfig);
     }
-
-
 }

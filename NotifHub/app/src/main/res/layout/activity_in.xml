@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +12,7 @@
 
         <include
             layout="@layout/toolbar"
+            android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -22,12 +22,15 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <!--  Navigation View-->
     <android.support.design.widget.NavigationView
         app:headerLayout="@layout/nvheader"
-        android:id="@+id/nvView"
+        android:id="@+id/slider_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemIconTint="@drawable/drawer_menu_selector"
+        app:itemTextColor="@drawable/drawer_menu_selector"
         android:background="@android:color/white"
         app:menu="@menu/drawer_view" />
 
