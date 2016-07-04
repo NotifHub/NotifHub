@@ -34,6 +34,7 @@ public class inActivity extends AppCompatActivity {
     private Toolbar tbr;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+    private static FragmentManager fragmentManager;
     private String user_id;
     TextView headerTxtUsern;
     TextView headerTxtMail;
@@ -55,7 +56,7 @@ public class inActivity extends AppCompatActivity {
 
         //Setup de la toolbar
 
-        tbr = (Toolbar) findViewById(R.id.main_toolbar);
+       /* tbr = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(tbr);
 
         //Drawer View setup
@@ -66,9 +67,25 @@ public class inActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(drawerToggle);
 
         nvDrawer = (NavigationView) findViewById(R.id.slider_menu);
+        nvDrawer.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });*/
 
-        // Setup drawer view
-        setupDrawerContent(nvDrawer);
+        initViews();
+
+        nvDrawer.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
 
         //Setup the header view
         setUpHeaderView();
@@ -85,6 +102,32 @@ public class inActivity extends AppCompatActivity {
         headerTxtUsern = (TextView) headerView.findViewById(R.id.username);
         headerTxtMail = (TextView) headerView.findViewById(R.id.email_address);
     }
+
+    /*  Init all views  */
+    private void initViews() {
+        tbr = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(tbr);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        nvDrawer = (NavigationView) findViewById(R.id.slider_menu);
+        fragmentManager = getSupportFragmentManager();
+        drawerToggle = new ActionBarDrawerToggle(this,
+                mDrawer, tbr, // nav menu toggle icon
+                R.string.drawer_open, // nav drawer open - description for
+                // accessibility
+                R.string.drawer_close // nav drawer close - description for
+                // accessibility
+        ) {
+            public void onDrawerClosed(View view) {
+            }
+
+            public void onDrawerOpened(View drawerView) {
+
+            }
+        };
+        mDrawer.setDrawerListener(drawerToggle);
+
+    }
+
 
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, tbr, R.string.drawer_open, R.string.drawer_close);
@@ -115,18 +158,6 @@ public class inActivity extends AppCompatActivity {
         drawerToggle.syncState();
     }
 
-
-    //Setup de la navigation drawer
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
-    }
 
     //Selection d'un menu de la navigation drawer
     public void selectDrawerItem(MenuItem menuItem) {

@@ -1,82 +1,85 @@
 package synapsehub.cd.notifhub.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import org.parceler.Parcel;
+
+import static android.R.attr.rating;
 
 /**
  * Created by michelo on 7/2/16.
  */
 
-public class Annonce implements Serializable {
 
-    public String getId() {
-        return id;
-    }
+@Parcel
+public class Annonce {
 
-    public String getTitle() {
-        return title;
-    }
+        String title;
+        String phone;
+        String description;
+        double price;
+        String imageUrl;
+        List<String> address = new ArrayList<>();
+        double latitude;
+        double longitude;
+        List<String> rubriques = new ArrayList<>();
 
-    public String getDesc() {
-        return desc;
-    }
+        // empty constructor needed by the Parceler library:
+        public Annonce() {}
 
-    public String getAdresse() {
-        return adresse;
-    }
+        public Annonce(String title, String phone, String description,
+                          double price, String imageUrl, ArrayList<String> address,
+                          double latitude, double longitude, ArrayList<String> rubriques) {
+            this.title = title;
+            this.phone = phone;
+            this.description = description;
+            this.price = price;
+            this.imageUrl = getLargeImageUrl(imageUrl);
+            this.address = address;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.rubriques = rubriques;
+        }
 
-    public String getPrice() {
-        return price;
-    }
+        public String getTitle() {
+            return title;
+        }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+        public String getPhone() {
+            return phone;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public String getDescription() {
+            return  description;
+        }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+        public double getPrice() {
+            return price;
+        }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
+        public String getImageUrl() { return imageUrl;}
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+        public String getLargeImageUrl(String imageUrl) {
+            String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+            return largeImageUrl;
+        }
 
-    private String id;
-    private String title;
-    private String desc;
-    private String adresse;
-    private String price;
+        public List<String> getAddress() {
+            return address;
+        }
 
-    public Annonce(){}
+        public double getLatitude() {
+            return latitude;
+        }
 
-    public Annonce(String id, String title, String desc, String adresse, String price){
-        this.id=id;
-        this.title=title;
-        this.desc=desc;
-        this.adresse=adresse;
-        this.price=price;
-    }
+        public double getLongitude() {
+            return longitude;
+        }
 
+        public List<String> getRubriques() {
+            return rubriques;
+        }
 
-
-
-
-    @Override
-    public String toString() {
-        return "Annonce{" +
-                "id ='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", desc='" + desc + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", price=" + price +
-                '}';
-    }
 
 }

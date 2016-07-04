@@ -22,9 +22,11 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <!--  Navigation View-->
+    <!--  Navigation View
+          i removed this to have a better ui : app:headerLayout="@layout/nvheader"
+          But you have to remove app:headerLayout="@layout/header_left" from xml otherwise it will inflate two headers
+    -->
     <android.support.design.widget.NavigationView
-        app:headerLayout="@layout/nvheader"
         android:id="@+id/slider_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
