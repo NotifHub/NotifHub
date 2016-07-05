@@ -14,6 +14,14 @@
     <string name="settings">Parametres</string>
     <string name="exit">Deconnection</string>
 
+    <string name="edit_title_annonce">titre de l\'annonce</string>
+    <string name="edit_phone_annonce">Numero de telephone</string>
+    <string name="edit_desc_annonce">description de l\'annonce</string>
+    <string name="edit_latitude_annonce">Latitude</string>
+    <string name="edit_longitude_annonce">Longitude</string>
+    <string name="edit_price_annonce">prix de l\'annonce</string>
+    <string name="btn_save_annonce">Enregistrer l\'annonce</string>
+
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
     <string name="retape_pwd">Reecrire le mot de passe</string>

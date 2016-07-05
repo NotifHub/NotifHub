@@ -16,7 +16,7 @@ public class Config {
     public static final String ANNONCE_ID="id";
     public static final String RUBRIQUE_ENTITY="rubrique";
     public static final String SRUBRIQUE_ENTITY="sousrubrique";
-    public static final String ANNONCE_ENTITY="annonce";
+    public static final String Child_annonce = "Annonce";
 
 
     /*private void storeImageToFirebase() {

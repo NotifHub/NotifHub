@@ -189,6 +189,7 @@ public class inActivity extends AppCompatActivity {
             case R.id.nav_settings:
                 fragment = new CompteFragment();
                 break;
+            /*
             case R.id.nav_exit:
                 fireAuth.signOut();
                 String emptyPrefs="";
@@ -196,6 +197,7 @@ public class inActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
+                */
             default:
                 fragment = new HomeFragment();
         }
